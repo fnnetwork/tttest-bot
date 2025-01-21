@@ -5,6 +5,7 @@ import requests
 from telegram import Bot, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageHandler, CallbackContext
 from telegram.ext.filters import TEXT
+from telegram.ext import Application
 
 # Bot Token
 BOT_TOKEN = "7447128452:AAG8JiAD58SdFPglxbxT7_Z0EV3otNumIl8"
@@ -169,8 +170,9 @@ def webhook():
     return "OK"
 
 if __name__ == "__main__":
-    updater = Updater(token=BOT_TOKEN, use_context=True)
-    dispatcher = updater.dispatcher
+    application.run_polling()
+    application = Application.builder().token(BOT_TOKEN).build()
+    dispatcher = application
 
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(MessageHandler(TEXT, handle_message))
