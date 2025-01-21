@@ -4,8 +4,7 @@ from flask import Flask, request
 import requests
 from telegram import Bot, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageHandler, CallbackContext
-from telegram.ext.filters import TextFilter
-
+from telegram.ext.filters import TEXT
 
 # Bot Token
 BOT_TOKEN = "7447128452:AAG8JiAD58SdFPglxbxT7_Z0EV3otNumIl8"
@@ -174,7 +173,7 @@ if __name__ == "__main__":
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(MessageHandler(TextFilter(), handle_message))
+    dispatcher.add_handler(MessageHandler(TEXT, handle_message))
     dispatcher.add_handler(CallbackQueryHandler(callback_handler))
 
     app.run(host="0.0.0.0", port=5000)
