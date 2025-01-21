@@ -9,7 +9,7 @@ from telegram.ext import Application
 
 # Bot Token
 BOT_TOKEN = "7447128452:AAG8JiAD58SdFPglxbxT7_Z0EV3otNumIl8"
-API_URL = f"https://api.telegram.org/bot{BOT_TOKEN}/"
+WEBHOOK_URL = f"https://electra-downloaders.herokuapp.com/{BOT_TOKEN}"
 
 
 # Initialize the bot
@@ -182,5 +182,11 @@ if __name__ == "__main__":
     dispatcher.add_handler(MessageHandler(TEXT, handle_message))
     dispatcher.add_handler(CallbackQueryHandler(callback_handler))
 
+    # Bind to Heroku's PORT
     port = int(os.environ.get("PORT", 5000))
-app.run(host="0.0.0.0", port=port)
+    # Set webhook
+    application.run_webhook(
+        listen="0.0.0.0",
+        port=port,
+        url_path=BOT_TOKEN,
+        webhook_url=WEBHOOK_URL
