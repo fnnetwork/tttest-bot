@@ -183,11 +183,5 @@ if __name__ == "__main__":
     dispatcher.add_handler(CallbackQueryHandler(callback_handler))
 
     # Bind to Heroku's PORT
-    port = int(os.environ.get("PORT", 5000))
-    # Set webhook
-    application.run_webhook(
-        listen="0.0.0.0",
-        port=port,
-        url_path=BOT_TOKEN,
-        webhook_url=WEBHOOK_URL
-    )   
+    port = int(os.environ.get("PORT", 5000))  # Get PORT from the environment or default to 5000
+app.run(host="0.0.0.0", port=port)  # Bind to 0.0.0.0 to allow external connections
