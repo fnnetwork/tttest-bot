@@ -11,6 +11,10 @@ from telegram.ext import Application
 BOT_TOKEN = "7447128452:AAG8JiAD58SdFPglxbxT7_Z0EV3otNumIl8"
 API_URL = f"https://api.telegram.org/bot{BOT_TOKEN}/"
 
+
+# Initialize the bot
+application = Application.builder().token(BOT_TOKEN).build()
+
 # Flask App
 app = Flask(__name__)
 
